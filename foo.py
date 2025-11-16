@@ -16,3 +16,6 @@ print('x')
 
 
 print(f.job('developer'))
+
+
+print(f.job('ml'))
