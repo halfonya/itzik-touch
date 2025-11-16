@@ -13,3 +13,6 @@ print(f.greet('danny'))
 #mlzzxNK
 
 print('x')
+
+
+print(f.job('developer'))
