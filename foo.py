@@ -18,4 +18,7 @@ print('x')
 print(f.job('developer'))
 
 
-print(f.job('dl'))
+
+print(f.job('dl_GenAI'))
+
+
