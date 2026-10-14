@@ -440,3 +440,9 @@ input:focus, select:focus { border-color: var(--sage); box-shadow: 0 0 0 4px col
 @media (max-width: 620px) {
   .simple-carousel-certificate .simple-carousel-image { max-width: 82%; height: 360px; border-width: 16px; }
 }
+
+/* Slide 1 certificate only: enlarge the framed certificate toward slide edges. */
+.simple-carousel-certificate .simple-carousel-image { max-width: 90%; height: 424px; padding: 6px; }
+@media (max-width: 620px) {
+  .simple-carousel-certificate .simple-carousel-image { max-width: 94%; height: 370px; }
+}
