@@ -313,7 +313,7 @@ function formatDate(value, lang) {
 }
 
 function LogoMark() {
-  return <span className="logo-mark" aria-hidden="true"><span /></span>;
+  return <span className="logo-mark logo-mark-image" aria-hidden="true"><img src="/illustrations/foot-reflexology-mark.png" alt="" /></span>;
 }
 
 function WhatsAppButton({ label, compact = false }) {
@@ -455,7 +455,7 @@ function Header({ t, profile, onMenu, onHome }) {
           <LogoMark />
           <span className="brand-copy"><strong>Itzik Touch</strong><small>מגע של איציק</small></span>
         </button>
-        <div className="top-actions"><button className="profile-chip" onClick={onHome} aria-label={t.profile}>{profile.profileImage ? <img src={profile.profileImage} alt="" /> : <span>{profile.avatar || '◒'}</span>}</button></div>
+        <div className="top-actions"><button className="profile-chip" onClick={onHome} aria-label={t.profile}><img src="/illustrations/yin-yang-mark.png" alt="" /></button></div>
       </div>
     </header>
   );
@@ -508,7 +508,6 @@ function HomeView({ t, lang, profile, onBook, onTreatments, onSelectTreatment })
           <div className="hero-actions"><button className="primary-button" onClick={onBook}>{t.bookNow}<ArrowLeft size={17} /></button><button className="quiet-button" onClick={onTreatments}>{t.explore}<ArrowLeft size={16} /></button></div>
           <div className="trust-row"><span><ShieldCheck size={16} />{t.professional}</span><span><HeartPulse size={16} />{t.forWomenMen}</span></div>
         </div>
-        <div className="hero-art" aria-hidden="true"><div className="hero-art-surface" /><img className="hero-cartoon" src="/illustrations/itzik-touch-hero-cartoon.png" alt="" /><div className="hero-orbit"><div className="yin-yang"><span /><i /></div></div><div className="hero-stone stone-one" /><div className="hero-stone stone-two" /></div>
       </section>
 
       <section className="carousel-section">
