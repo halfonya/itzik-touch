@@ -144,6 +144,8 @@ a { color: inherit; text-decoration: none; }
 .feature-visual::before { content: ''; position: absolute; width: 290px; height: 230px; border-radius: 51% 49% 58% 42%; background: color-mix(in srgb, var(--surface) 40%, transparent); transform: rotate(-12deg); }
 .visual-halo { position: absolute; width: 180px; height: 180px; border: 1px solid color-mix(in srgb, var(--brand) 18%, transparent); border-radius: 50%; }
 .feature-visual img { position: relative; z-index: 1; width: min(87%, 350px); height: 270px; object-fit: contain; }
+.feature-card.certificate-slide .feature-visual { padding: 22px; background: linear-gradient(145deg, rgba(255,255,255,.28), rgba(189,150,96,.12)); }
+.feature-card.certificate-slide .feature-image { width: min(90%, 350px); height: 292px; padding: 9px; object-fit: contain; background: #fffdf9; border: 7px double #bd9660; border-radius: 8px; box-shadow: 0 16px 30px rgba(23, 63, 60, .22), 0 0 0 1px rgba(255,255,255,.7); }
 .certificate-visual { position: relative; z-index: 1; width: min(82%, 300px); min-height: 220px; padding: 25px 23px 18px; display: grid; align-content: center; justify-items: center; gap: 7px; color: #183a38; text-align: center; background: #fffdf9; border: 7px double #bd9660; border-radius: 5px; box-shadow: 0 16px 30px rgba(23, 63, 60, .18); transform: rotate(-2deg); }
 .certificate-visual strong { font-size: 25px; line-height: 1.05; font-weight: 800; }
 .certificate-visual > span:not(.certificate-kicker) { font-size: 12px; line-height: 1.3; }
