@@ -77,7 +77,7 @@ const treatments = [
 ];
 
 const credibilitySlides = [
-  { id: 'massage-certificate', title: { he: 'תעודת עיסוי', en: 'Massage certification' }, eyebrow: { he: 'הסמכה מקצועית', en: 'Professional certification' }, description: { he: 'הכשרה מקצועית בעיסוי, אנטומיה ועיסוי ספורטאים.', en: 'Professional training in massage, anatomy and sports massage.' }, image: '/illustrations/massage-certificate-enhanced.png', tone: 'mist', isCredential: true },
+  { id: 'massage-certificate', title: { he: 'תעודת עיסוי', en: 'Massage certification' }, eyebrow: { he: 'הסמכה מקצועית', en: 'Professional certification' }, description: { he: 'הכשרה מקצועית בעיסוי, אנטומיה ועיסוי ספורטאים.', en: 'Professional training in massage, anatomy and sports massage.' }, image: '/illustrations/massage-certificate-source.jpeg', tone: 'mist', isCredential: true },
   { id: 'reflexology-certificate-1', title: { he: 'הסמכת רפלקסולוגיה', en: 'Reflexology certification' }, eyebrow: { he: 'הכשרה מקצועית', en: 'Professional training' }, description: { he: 'הסמכה מקצועית בלימודי רפלקסולוגיה ורפואה משלימה.', en: 'Professional certification in reflexology and complementary care.' }, image: '/illustrations/carousel-photo-1-enhanced.png', tone: 'sage', isCredential: true },
   { id: 'reflexology-certificate-2', title: { he: 'הסמכה ברפלקסולוגיה', en: 'Reflexology qualification' }, eyebrow: { he: 'ידע וניסיון', en: 'Knowledge and experience' }, description: { he: 'תעודה נוספת המעידה על הכשרה בתחום הרפלקסולוגיה.', en: 'An additional certificate reflecting reflexology training.' }, image: '/illustrations/carousel-photo-2-enhanced.png', tone: 'gold', isCredential: true },
 ];
@@ -494,7 +494,7 @@ function HomeView({ t, lang, profile, onBook, onTreatments, onSelectTreatment })
   const item = carouselSlides[active];
   const firstName = profile.firstName || t.guest;
   useEffect(() => {
-    const timer = window.setInterval(() => setActive((current) => (current + 1) % carouselSlides.length), 3000);
+    const timer = window.setInterval(() => setActive((current) => (current + 1) % carouselSlides.length), 5000);
     return () => window.clearInterval(timer);
   }, []);
   const move = (direction) => setActive((current) => (current + direction + carouselSlides.length) % carouselSlides.length);
@@ -514,7 +514,7 @@ function HomeView({ t, lang, profile, onBook, onTreatments, onSelectTreatment })
         <div className="section-heading"><div><span className="section-kicker">01 / {t.featured}</span><h2>{t.featuredText}</h2></div><div className="carousel-controls"><button className="circle-button" onClick={() => move(-1)} aria-label="Previous"><ChevronRight size={19} /></button><span>{String(active + 1).padStart(2, '0')} <em>/</em> {String(carouselSlides.length).padStart(2, '0')}</span><button className="circle-button" onClick={() => move(1)} aria-label="Next"><ChevronLeft size={19} /></button></div></div>
         <div className={`feature-card ${item.tone}`}>
           <div className="feature-content"><span className="feature-number">{String(active + 1).padStart(2, '0')}</span><span className="eyebrow">{item.eyebrow[lang]}</span><h3>{item.title[lang]}</h3><p>{item.description[lang]}</p><div className="feature-meta">{item.isCredential ? <span><ShieldCheck size={15} />{lang === 'he' ? 'אימות מקצועי' : 'Professional credential'}</span> : <><span><Clock3 size={15} />{item.duration} {lang === 'he' ? 'דקות' : 'min'}</span><span>{formatCurrency(item.price)}</span></>}</div>{item.isCredential ? <span className="credential-label"><ShieldCheck size={16} />{lang === 'he' ? 'הסמכה מוצגת' : 'Credential displayed'}</span> : <button className="outline-button" onClick={() => onSelectTreatment(item.id)}>{t.bookNow}<ArrowLeft size={16} /></button>}</div>
-          <div className="feature-visual"><div className="visual-halo" />{item.id === 'massage-certificate' ? <CertificateVisual lang={lang} /> : <img className="feature-image" src={item.image} alt={item.title[lang]} onError={(event) => { event.currentTarget.style.display = 'none'; }} />}{item.preTreatmentImage && <img className="feature-image feature-image-secondary" src={item.preTreatmentImage} alt={lang === 'he' ? 'אמבט מים חמים עם מלחים לפני רפלקסולוגיה' : 'Warm salt-water foot bath before reflexology'} onError={(event) => { event.currentTarget.style.display = 'none'; }} />}<div className="visual-fallback"><Leaf size={42} /><span>Itzik Touch</span></div></div>
+          <div className="feature-visual"><div className="visual-halo" /><img className="feature-image" src={item.image} alt={item.title[lang]} onError={(event) => { event.currentTarget.style.display = 'none'; }} />{item.preTreatmentImage && <img className="feature-image feature-image-secondary" src={item.preTreatmentImage} alt={lang === 'he' ? 'אמבט מים חמים עם מלחים לפני רפלקסולוגיה' : 'Warm salt-water foot bath before reflexology'} onError={(event) => { event.currentTarget.style.display = 'none'; }} />}<div className="visual-fallback"><Leaf size={42} /><span>Itzik Touch</span></div></div>
         </div>
         <div className="carousel-dots">{carouselSlides.map((slide, index) => <button key={slide.id} className={index === active ? 'active' : ''} onClick={() => setActive(index)} aria-label={slide.title[lang]} />)}</div>
       </section>
