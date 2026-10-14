@@ -430,3 +430,13 @@ input:focus, select:focus { border-color: var(--sage); box-shadow: 0 0 0 4px col
   .simple-carousel-certificate .simple-carousel-image { max-width: 68%; height: 350px; }
   .simple-carousel-certificate .simple-carousel-caption { inset-inline-start: 8px; bottom: 8px; width: 42%; padding: 10px; }
 }
+
+/* Final carousel interaction and visual adjustments. */
+.simple-carousel-slide { cursor: pointer; }
+.simple-carousel-caption { opacity: .35; }
+.simple-carousel-certificate { border: 0; border-radius: var(--radius-xl); box-shadow: var(--shadow); }
+.simple-carousel-certificate .simple-carousel-image { max-width: 78%; height: 408px; padding: 10px; background: #fffdf9; border: 26px solid transparent; border-image: url('/illustrations/ornate-certificate-frame.png') 120 stretch; }
+.simple-carousel-certificate .simple-carousel-caption { opacity: .35; }
+@media (max-width: 620px) {
+  .simple-carousel-certificate .simple-carousel-image { max-width: 82%; height: 360px; border-width: 16px; }
+}
