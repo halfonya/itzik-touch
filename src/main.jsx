@@ -9,7 +9,6 @@ import {
   ChevronRight,
   CircleUserRound,
   Clock3,
-  Globe2,
   HeartPulse,
   Home,
   ImagePlus,
@@ -48,10 +47,11 @@ const treatments = [
     id: 'reflexology',
     title: { he: 'רפלקסולוגיה', en: 'Reflexology' },
     eyebrow: { he: 'איזון דרך כפות הרגליים', en: 'Balance through the feet' },
-    description: { he: 'טיפול מדויק ועדין שמזמין את הגוף להאט, לנשום ולהתאזן.', en: 'A precise, gentle treatment that invites the body to slow down and rebalance.' },
+    description: { he: 'טיפול מדויק ועדין עם אמבט מים חמים ומלחים לריכוך כפות הרגליים ולהגברת אפקט הטיפול.', en: 'A precise, gentle treatment with a warm salt-water foot bath to soften the feet and enhance the treatment.' },
     duration: 50,
     price: 220,
     image: '/illustrations/reflexology-men-carousel.jpg',
+    preTreatmentImage: '/illustrations/footbath-men.png',
     tone: 'sage',
   },
   {
@@ -326,6 +326,17 @@ function WhatsAppButton({ label, compact = false }) {
   );
 }
 
+function CertificateVisual({ lang }) {
+  return <div className="certificate-visual" role="img" aria-label={lang === 'he' ? 'תעודת עיסוי מקצועית' : 'Professional massage certificate'}>
+    <div className="certificate-seal"><ShieldCheck size={18} /></div>
+    <span className="certificate-kicker">ITZIK TOUCH</span>
+    <strong>{lang === 'he' ? 'תעודת עיסוי' : 'Massage Certificate'}</strong>
+    <span>{lang === 'he' ? 'הכשרה מקצועית בעיסוי ואנטומיה' : 'Professional training in massage and anatomy'}</span>
+    <div className="certificate-line" />
+    <small>{lang === 'he' ? 'הסמכה מקצועית' : 'Professional certification'}</small>
+  </div>;
+}
+
 function App() {
   const [lang, setLang] = useState(() => readStorage(STORAGE.lang, 'he'));
   const [theme, setTheme] = useState(() => readStorage(STORAGE.theme, 'light'));
@@ -420,7 +431,7 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Header t={t} lang={lang} theme={theme} profile={profile} onMenu={() => setDrawerOpen(true)} onHome={() => navigate('home')} onLang={() => setLang(lang === 'he' ? 'en' : 'he')} onTheme={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
+      <Header t={t} profile={profile} onMenu={() => setDrawerOpen(true)} onHome={() => navigate('home')} />
       <Drawer open={drawerOpen} t={t} lang={lang} theme={theme} profile={profile} view={view} onClose={() => setDrawerOpen(false)} onNavigate={navigate} onLang={() => setLang(lang === 'he' ? 'en' : 'he')} onTheme={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
       <main className="page-shell">
         {view === 'home' && <HomeView t={t} lang={lang} profile={profile} selectedTreatment={selectedTreatment} onBook={() => navigate('book')} onTreatments={() => navigate('treatments')} onSelectTreatment={selectTreatment} />}
@@ -435,7 +446,7 @@ function App() {
   );
 }
 
-function Header({ t, lang, theme, profile, onMenu, onHome, onLang, onTheme }) {
+function Header({ t, profile, onMenu, onHome }) {
   return (
     <header className="topbar">
       <div className="topbar-inner">
@@ -444,11 +455,7 @@ function Header({ t, lang, theme, profile, onMenu, onHome, onLang, onTheme }) {
           <LogoMark />
           <span className="brand-copy"><strong>Itzik Touch</strong><small>מגע של איציק</small></span>
         </button>
-        <div className="top-actions">
-          <button className="top-action" onClick={onLang} aria-label={t.language}><Globe2 size={16} /><span>{lang === 'he' ? 'EN' : 'עב'}</span></button>
-          <button className="top-action theme-action" onClick={onTheme} aria-label={t.theme}>{theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}<span>{theme === 'light' ? t.dark : t.light}</span></button>
-          <button className="profile-chip" onClick={onHome} aria-label={t.profile}>{profile.profileImage ? <img src={profile.profileImage} alt="" /> : <span>{profile.avatar || '◒'}</span>}</button>
-        </div>
+        <div className="top-actions"><button className="profile-chip" onClick={onHome} aria-label={t.profile}>{profile.profileImage ? <img src={profile.profileImage} alt="" /> : <span>{profile.avatar || '◒'}</span>}</button></div>
       </div>
     </header>
   );
@@ -501,21 +508,21 @@ function HomeView({ t, lang, profile, onBook, onTreatments, onSelectTreatment })
           <div className="hero-actions"><button className="primary-button" onClick={onBook}>{t.bookNow}<ArrowLeft size={17} /></button><button className="quiet-button" onClick={onTreatments}>{t.explore}<ArrowLeft size={16} /></button></div>
           <div className="trust-row"><span><ShieldCheck size={16} />{t.professional}</span><span><HeartPulse size={16} />{t.forWomenMen}</span></div>
         </div>
-        <div className="hero-art" aria-hidden="true"><div className="mist mist-a" /><div className="mist mist-b" /><div className="hero-orbit"><div className="yin-yang"><span /><i /></div></div><div className="hero-leaf leaf-one">⌁</div><div className="hero-leaf leaf-two">⌁</div><div className="hero-stone stone-one" /><div className="hero-stone stone-two" /></div>
+        <div className="hero-art" aria-hidden="true"><div className="hero-art-surface" /><img className="hero-cartoon" src="/illustrations/itzik-touch-hero-cartoon.png" alt="" /><div className="hero-orbit"><div className="yin-yang"><span /><i /></div></div><div className="hero-stone stone-one" /><div className="hero-stone stone-two" /></div>
       </section>
 
       <section className="carousel-section">
         <div className="section-heading"><div><span className="section-kicker">01 / {t.featured}</span><h2>{t.featuredText}</h2></div><div className="carousel-controls"><button className="circle-button" onClick={() => move(-1)} aria-label="Previous"><ChevronRight size={19} /></button><span>{String(active + 1).padStart(2, '0')} <em>/</em> {String(carouselSlides.length).padStart(2, '0')}</span><button className="circle-button" onClick={() => move(1)} aria-label="Next"><ChevronLeft size={19} /></button></div></div>
         <div className={`feature-card ${item.tone}`}>
           <div className="feature-content"><span className="feature-number">{String(active + 1).padStart(2, '0')}</span><span className="eyebrow">{item.eyebrow[lang]}</span><h3>{item.title[lang]}</h3><p>{item.description[lang]}</p><div className="feature-meta">{item.isCredential ? <span><ShieldCheck size={15} />{lang === 'he' ? 'אימות מקצועי' : 'Professional credential'}</span> : <><span><Clock3 size={15} />{item.duration} {lang === 'he' ? 'דקות' : 'min'}</span><span>{formatCurrency(item.price)}</span></>}</div>{item.isCredential ? <span className="credential-label"><ShieldCheck size={16} />{lang === 'he' ? 'הסמכה מוצגת' : 'Credential displayed'}</span> : <button className="outline-button" onClick={() => onSelectTreatment(item.id)}>{t.bookNow}<ArrowLeft size={16} /></button>}</div>
-          <div className="feature-visual"><div className="visual-halo" /><img className="feature-image" src={item.image} alt={item.title[lang]} onError={(event) => { event.currentTarget.style.display = 'none'; }} />{item.preTreatmentImage && <img className="feature-image feature-image-secondary" src={item.preTreatmentImage} alt={lang === 'he' ? 'הכנה רגועה לפני הטיפול' : 'Calm preparation before treatment'} onError={(event) => { event.currentTarget.style.display = 'none'; }} />}<div className="visual-fallback"><Leaf size={42} /><span>Itzik Touch</span></div></div>
+          <div className="feature-visual"><div className="visual-halo" />{item.id === 'massage-certificate' ? <CertificateVisual lang={lang} /> : <img className="feature-image" src={item.image} alt={item.title[lang]} onError={(event) => { event.currentTarget.style.display = 'none'; }} />}{item.preTreatmentImage && <img className="feature-image feature-image-secondary" src={item.preTreatmentImage} alt={lang === 'he' ? 'אמבט מים חמים עם מלחים לפני רפלקסולוגיה' : 'Warm salt-water foot bath before reflexology'} onError={(event) => { event.currentTarget.style.display = 'none'; }} />}<div className="visual-fallback"><Leaf size={42} /><span>Itzik Touch</span></div></div>
         </div>
         <div className="carousel-dots">{carouselSlides.map((slide, index) => <button key={slide.id} className={index === active ? 'active' : ''} onClick={() => setActive(index)} aria-label={slide.title[lang]} />)}</div>
       </section>
 
       <section className="home-grid-section"><div className="section-heading compact"><div><span className="section-kicker">02 / {t.why}</span><h2>{t.whyText}</h2></div></div><div className="choice-grid"><button className="choice-card" onClick={onBook}><span className="choice-icon sage"><MapPin size={20} /></span><span><strong>{t.atClinic}</strong><small>{t.atClinicText}</small></span><ArrowLeft size={17} /></button><button className="choice-card" onClick={onBook}><span className="choice-icon blue"><Home size={20} /></span><span><strong>{t.atHome}</strong><small>{t.atHomeText}</small></span><ArrowLeft size={17} /></button></div></section>
 
-      <section className="whatsapp-panel"><div className="whatsapp-symbol"><MessageCircle size={25} /></div><div><strong>{t.whatsappText}</strong><p>Itzik Touch · +972 50 000 0000</p></div><WhatsAppButton label={t.contact} compact /></section>
+      <section className="whatsapp-panel"><div className="whatsapp-symbol"><MessageCircle size={25} /></div><div><strong>{t.whatsappText}</strong><p>Itzik Touch · 054-876-4111</p></div><WhatsAppButton label={t.contact} compact /></section>
     </div>
   );
 }
