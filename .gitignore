@@ -1,3 +1,13 @@
 
 
 __pycache__
+
+
+# Local environment, dependencies, build output and private Manus metadata
+.env.local
+node_modules/
+dist/
+.npm-cache/
+.manus/
+.manus-webdev/
+.work/

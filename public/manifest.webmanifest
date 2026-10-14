@@ -1,0 +1,12 @@
+{
+  "name": "Itzik Touch — מגע של איציק",
+  "short_name": "Itzik Touch",
+  "description": "הזמנת טיפולי עיסוי באווירה רגועה, מקצועית ומכבדת.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f1e8",
+  "theme_color": "#173f3c",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": []
+}
