@@ -203,8 +203,8 @@ a { color: inherit; text-decoration: none; }
 .intro-mark { width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 23px; border-radius: 17px; background: var(--sage-soft); color: var(--brand); }
 .page-intro h1 { font-size: clamp(38px, 6vw, 60px); letter-spacing: -.075em; line-height: 1; margin: 11px 0 13px; font-weight: 600; }
 .page-intro p { margin: 0; color: var(--ink-soft); font-size: 18px; line-height: 1.6; }
-.treatment-list { display: grid; gap: 14px; }
-.treatment-row { display: grid; grid-template-columns: 42px 148px 1fr auto; align-items: center; gap: 22px; padding: 15px; min-height: 171px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-small); }
+.treatment-list { display: flex; flex-direction: column; gap: 18px; }
+.treatment-row { display: grid; grid-template-columns: 42px minmax(148px, 180px) minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 18px; min-height: 190px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-small); }
 .treatment-row:hover { border-color: var(--sage); }
 .row-index { align-self: start; padding: 11px 5px; color: var(--muted); font-family: 'Rubik', sans-serif; font-size: 12px; }
 .row-art { position: relative; display: grid; place-items: center; height: 139px; overflow: hidden; border-radius: 15px; background: var(--sage-soft); }
@@ -213,7 +213,8 @@ a { color: inherit; text-decoration: none; }
 .treatment-row.blue .row-art { background: #dce7e6; }
 .row-art img { width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1; }
 .row-art .row-fallback { position: absolute; color: var(--brand); opacity: .4; }
-.row-copy h2 { margin: 8px 0 6px; font-size: 27px; letter-spacing: -.055em; }
+.row-copy { min-width: 0; overflow: hidden; }
+.row-copy h2 { margin: 8px 0 6px; font-size: 27px; letter-spacing: -.055em; overflow-wrap: anywhere; }
 .row-copy p { max-width: 580px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
 .row-copy .feature-meta { margin: 13px 0 0; }
 .row-action { display: inline-flex; align-items: center; gap: 9px; padding: 11px 13px; color: var(--brand); background: transparent; border: 1px solid var(--line); border-radius: 99px; white-space: nowrap; }
