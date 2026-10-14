@@ -419,3 +419,14 @@ input:focus, select:focus { border-color: var(--sage); box-shadow: 0 0 0 4px col
   .simple-carousel-certificate .simple-carousel-image { padding: 12px 18%; }
   .simple-carousel-caption { inset-inline-end: 14px; bottom: 14px; width: calc(100% - 28px); padding: 17px; }
 }
+
+/* Slide 1 only: use the supplied ornate frame across the full slide. */
+.simple-carousel-certificate { min-height: 430px; border: 30px solid transparent; border-image: url('/illustrations/ornate-certificate-frame.png') 120 stretch; border-radius: 0; background: #f5ecdc; box-shadow: var(--shadow); }
+.simple-carousel-certificate .simple-carousel-image { width: auto; max-width: 58%; height: 390px; padding: 8px; object-fit: contain; background: #fffdf9; border: 2px solid rgba(184,140,85,.35); }
+.simple-carousel-certificate .simple-carousel-caption { inset-inline-start: 22px; inset-inline-end: auto; bottom: 20px; width: min(300px, 28%); padding: 16px 18px; opacity: .6; transform: scale(.8); transform-origin: bottom start; }
+.simple-carousel-certificate .simple-carousel-caption h3 { font-size: clamp(22px, 2.6vw, 34px); }
+@media (max-width: 620px) {
+  .simple-carousel-certificate { border-width: 18px; }
+  .simple-carousel-certificate .simple-carousel-image { max-width: 68%; height: 350px; }
+  .simple-carousel-certificate .simple-carousel-caption { inset-inline-start: 8px; bottom: 8px; width: 42%; padding: 10px; }
+}
