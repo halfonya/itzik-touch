@@ -51,28 +51,18 @@ const treatments = [
     description: { he: 'טיפול מדויק ועדין שמזמין את הגוף להאט, לנשום ולהתאזן.', en: 'A precise, gentle treatment that invites the body to slow down and rebalance.' },
     duration: 50,
     price: 220,
-    image: '/illustrations/reflexology.png',
+    image: '/illustrations/reflexology-men-carousel.jpg',
     tone: 'sage',
   },
   {
     id: 'swedish',
-    title: { he: 'עיסוי שוודי', en: 'Swedish massage' },
+    title: { he: 'עיסוי', en: 'Massage' },
     eyebrow: { he: 'מרגיע ומשחרר', en: 'Relax and release' },
     description: { he: 'מגע זורם ונעים לשחרור עומסים, מנוחה וחידוש אנרגיה.', en: 'Flowing, soothing touch for releasing tension, resting and restoring energy.' },
     duration: 60,
     price: 260,
-    image: '/illustrations/swedish.png',
+    image: '/illustrations/massage-men-carousel.jpg',
     tone: 'mist',
-  },
-  {
-    id: 'sports',
-    title: { he: 'עיסוי ספורטאים', en: 'Sports massage' },
-    eyebrow: { he: 'עמוק וממוקד', en: 'Deep and focused' },
-    description: { he: 'טיפול ממוקד לאזורים שעובדים קשה — לפני, אחרי ובין אימונים.', en: 'Focused care for hard-working areas — before, after and between workouts.' },
-    duration: 60,
-    price: 290,
-    image: '/illustrations/sports.png',
-    tone: 'blue',
   },
   {
     id: 'cupping',
@@ -81,10 +71,18 @@ const treatments = [
     description: { he: 'שילוב כוסות רוח כחלק מטיפול מקצועי, רגוע ומכבד.', en: 'Cupping as part of a professional, calm and respectful treatment.' },
     duration: 60,
     price: 300,
-    image: '/illustrations/cupping.png',
+    image: '/illustrations/cupping-men-carousel.jpg',
     tone: 'gold',
   },
 ];
+
+const credibilitySlides = [
+  { id: 'massage-certificate', title: { he: 'תעודת עיסוי', en: 'Massage certification' }, eyebrow: { he: 'הסמכה מקצועית', en: 'Professional certification' }, description: { he: 'הכשרה מקצועית בעיסוי, אנטומיה ועיסוי ספורטאים.', en: 'Professional training in massage, anatomy and sports massage.' }, image: '/illustrations/massage-certificate-enhanced.png', tone: 'mist', isCredential: true },
+  { id: 'reflexology-certificate-1', title: { he: 'הסמכת רפלקסולוגיה', en: 'Reflexology certification' }, eyebrow: { he: 'הכשרה מקצועית', en: 'Professional training' }, description: { he: 'הסמכה מקצועית בלימודי רפלקסולוגיה ורפואה משלימה.', en: 'Professional certification in reflexology and complementary care.' }, image: '/illustrations/carousel-photo-1-enhanced.png', tone: 'sage', isCredential: true },
+  { id: 'reflexology-certificate-2', title: { he: 'הסמכה ברפלקסולוגיה', en: 'Reflexology qualification' }, eyebrow: { he: 'ידע וניסיון', en: 'Knowledge and experience' }, description: { he: 'תעודה נוספת המעידה על הכשרה בתחום הרפלקסולוגיה.', en: 'An additional certificate reflecting reflexology training.' }, image: '/illustrations/carousel-photo-2-enhanced.png', tone: 'gold', isCredential: true },
+];
+
+const carouselSlides = [...treatments, ...credibilitySlides];
 
 const copy = {
   he: {
@@ -486,9 +484,13 @@ function Drawer({ open, t, lang, theme, profile, view, onClose, onNavigate, onLa
 
 function HomeView({ t, lang, profile, onBook, onTreatments, onSelectTreatment }) {
   const [active, setActive] = useState(0);
-  const item = treatments[active];
+  const item = carouselSlides[active];
   const firstName = profile.firstName || t.guest;
-  const move = (direction) => setActive((current) => (current + direction + treatments.length) % treatments.length);
+  useEffect(() => {
+    const timer = window.setInterval(() => setActive((current) => (current + 1) % carouselSlides.length), 3000);
+    return () => window.clearInterval(timer);
+  }, []);
+  const move = (direction) => setActive((current) => (current + direction + carouselSlides.length) % carouselSlides.length);
   return (
     <div className="home-view">
       <section className="hero-section">
@@ -503,12 +505,12 @@ function HomeView({ t, lang, profile, onBook, onTreatments, onSelectTreatment })
       </section>
 
       <section className="carousel-section">
-        <div className="section-heading"><div><span className="section-kicker">01 / {t.featured}</span><h2>{t.featuredText}</h2></div><div className="carousel-controls"><button className="circle-button" onClick={() => move(-1)} aria-label="Previous"><ChevronRight size={19} /></button><span>{String(active + 1).padStart(2, '0')} <em>/</em> {String(treatments.length).padStart(2, '0')}</span><button className="circle-button" onClick={() => move(1)} aria-label="Next"><ChevronLeft size={19} /></button></div></div>
+        <div className="section-heading"><div><span className="section-kicker">01 / {t.featured}</span><h2>{t.featuredText}</h2></div><div className="carousel-controls"><button className="circle-button" onClick={() => move(-1)} aria-label="Previous"><ChevronRight size={19} /></button><span>{String(active + 1).padStart(2, '0')} <em>/</em> {String(carouselSlides.length).padStart(2, '0')}</span><button className="circle-button" onClick={() => move(1)} aria-label="Next"><ChevronLeft size={19} /></button></div></div>
         <div className={`feature-card ${item.tone}`}>
-          <div className="feature-content"><span className="feature-number">0{active + 1}</span><span className="eyebrow">{item.eyebrow[lang]}</span><h3>{item.title[lang]}</h3><p>{item.description[lang]}</p><div className="feature-meta"><span><Clock3 size={15} />{item.duration} {lang === 'he' ? 'דקות' : 'min'}</span><span>{formatCurrency(item.price)}</span></div><button className="outline-button" onClick={() => onSelectTreatment(item.id)}>{t.bookNow}<ArrowLeft size={16} /></button></div>
-          <div className="feature-visual"><div className="visual-halo" /><img src={item.image} alt={item.title[lang]} onError={(event) => { event.currentTarget.style.display = 'none'; }} /><div className="visual-fallback"><Leaf size={42} /><span>Itzik Touch</span></div></div>
+          <div className="feature-content"><span className="feature-number">{String(active + 1).padStart(2, '0')}</span><span className="eyebrow">{item.eyebrow[lang]}</span><h3>{item.title[lang]}</h3><p>{item.description[lang]}</p><div className="feature-meta">{item.isCredential ? <span><ShieldCheck size={15} />{lang === 'he' ? 'אימות מקצועי' : 'Professional credential'}</span> : <><span><Clock3 size={15} />{item.duration} {lang === 'he' ? 'דקות' : 'min'}</span><span>{formatCurrency(item.price)}</span></>}</div>{item.isCredential ? <span className="credential-label"><ShieldCheck size={16} />{lang === 'he' ? 'הסמכה מוצגת' : 'Credential displayed'}</span> : <button className="outline-button" onClick={() => onSelectTreatment(item.id)}>{t.bookNow}<ArrowLeft size={16} /></button>}</div>
+          <div className="feature-visual"><div className="visual-halo" /><img className="feature-image" src={item.image} alt={item.title[lang]} onError={(event) => { event.currentTarget.style.display = 'none'; }} />{item.preTreatmentImage && <img className="feature-image feature-image-secondary" src={item.preTreatmentImage} alt={lang === 'he' ? 'הכנה רגועה לפני הטיפול' : 'Calm preparation before treatment'} onError={(event) => { event.currentTarget.style.display = 'none'; }} />}<div className="visual-fallback"><Leaf size={42} /><span>Itzik Touch</span></div></div>
         </div>
-        <div className="carousel-dots">{treatments.map((treatment, index) => <button key={treatment.id} className={index === active ? 'active' : ''} onClick={() => setActive(index)} aria-label={treatment.title[lang]} />)}</div>
+        <div className="carousel-dots">{carouselSlides.map((slide, index) => <button key={slide.id} className={index === active ? 'active' : ''} onClick={() => setActive(index)} aria-label={slide.title[lang]} />)}</div>
       </section>
 
       <section className="home-grid-section"><div className="section-heading compact"><div><span className="section-kicker">02 / {t.why}</span><h2>{t.whyText}</h2></div></div><div className="choice-grid"><button className="choice-card" onClick={onBook}><span className="choice-icon sage"><MapPin size={20} /></span><span><strong>{t.atClinic}</strong><small>{t.atClinicText}</small></span><ArrowLeft size={17} /></button><button className="choice-card" onClick={onBook}><span className="choice-icon blue"><Home size={20} /></span><span><strong>{t.atHome}</strong><small>{t.atHomeText}</small></span><ArrowLeft size={17} /></button></div></section>

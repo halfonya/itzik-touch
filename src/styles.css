@@ -51,8 +51,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 button { border: 0; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
 
-.app-shell { min-height: 100vh; overflow: hidden; background: radial-gradient(circle at 7% 12%, rgba(202, 223, 201, .44), transparent 29%), radial-gradient(circle at 92% 23%, rgba(204, 222, 226, .36), transparent 27%), var(--paper); }
-:root[data-theme='dark'] .app-shell { background: radial-gradient(circle at 7% 12%, rgba(64, 104, 89, .16), transparent 29%), radial-gradient(circle at 92% 23%, rgba(42, 76, 77, .21), transparent 27%), var(--paper); }
+.app-shell { min-height: 100vh; overflow: hidden; background-image: linear-gradient(rgba(246, 241, 231, .82), rgba(246, 241, 231, .88)), url('/backgrounds/treatment-room.jpeg'); background-color: var(--paper); background-size: cover; background-position: center; background-attachment: fixed; }
+:root[data-theme='dark'] .app-shell { background-image: linear-gradient(rgba(21, 38, 36, .86), rgba(21, 38, 36, .92)), url('/backgrounds/treatment-room.jpeg'); }
 .topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 84%, transparent); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
 .topbar-inner { width: min(1180px, calc(100% - 44px)); height: 78px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
 .icon-button { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: var(--surface); display: grid; place-items: center; transition: .2s ease; }
@@ -134,12 +134,14 @@ a { color: inherit; text-decoration: none; }
 .feature-meta { display: flex; align-items: center; gap: 18px; color: var(--ink-soft); font-family: 'DM Sans', sans-serif; font-size: 13px; margin: 22px 0 23px; }
 .feature-meta span { display: inline-flex; align-items: center; gap: 6px; }
 .feature-meta strong { color: var(--ink); font-weight: 600; }
+.credential-label { display: inline-flex; align-items: center; gap: 7px; min-height: 41px; padding: 10px 16px; border-radius: 99px; color: var(--brand); background: color-mix(in srgb, var(--surface) 62%, transparent); border: 1px solid color-mix(in srgb, var(--brand) 20%, transparent); font-size: 13px; }
 .outline-button { padding: 10px 16px; min-height: 41px; border: 1px solid color-mix(in srgb, var(--brand) 28%, transparent); background: color-mix(in srgb, var(--surface) 30%, transparent); color: var(--brand); }
 .outline-button:hover { background: var(--surface); }
 .feature-visual { position: relative; display: grid; place-items: center; min-height: 310px; }
 .feature-visual::before { content: ''; position: absolute; width: 290px; height: 230px; border-radius: 51% 49% 58% 42%; background: color-mix(in srgb, var(--surface) 40%, transparent); transform: rotate(-12deg); }
 .visual-halo { position: absolute; width: 180px; height: 180px; border: 1px solid color-mix(in srgb, var(--brand) 18%, transparent); border-radius: 50%; }
 .feature-visual img { position: relative; z-index: 1; width: min(87%, 350px); height: 270px; object-fit: contain; }
+.feature-visual .feature-image-secondary { position: absolute; z-index: 2; width: 145px; height: 112px; inset-inline-end: 15px; bottom: 15px; padding: 7px; border: 1px solid color-mix(in srgb, var(--surface) 74%, transparent); border-radius: 20px; background: color-mix(in srgb, var(--surface) 82%, transparent); box-shadow: 0 12px 25px rgba(23, 63, 60, .14); }
 .visual-fallback { position: absolute; z-index: 0; display: grid; place-items: center; gap: 8px; color: var(--brand); opacity: .45; font-family: 'DM Sans', sans-serif; font-size: 12px; }
 .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
 .carousel-dots button { width: 7px; height: 7px; padding: 0; border-radius: 50%; background: var(--line); }
