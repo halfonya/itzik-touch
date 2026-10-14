@@ -311,7 +311,7 @@ function formatDate(value, lang) {
 }
 
 function LogoMark() {
-  return <span className="logo-mark logo-mark-image" aria-hidden="true"><img src="/illustrations/foot-reflexology-mark.png" alt="" /></span>;
+  return null;
 }
 
 function WhatsAppButton({ label, compact = false }) {
@@ -453,7 +453,6 @@ function Header({ t, profile, onMenu, onHome }) {
           <LogoMark />
           <span className="brand-copy"><strong>Itzik Touch</strong><small>מגע של איציק</small></span>
         </button>
-        <div className="top-actions"><button className="profile-chip" onClick={onHome} aria-label={t.profile}><img src="/illustrations/yin-yang-mark.png" alt="" /></button></div>
       </div>
     </header>
   );
