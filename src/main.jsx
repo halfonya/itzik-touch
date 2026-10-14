@@ -494,9 +494,9 @@ function HomeView({ t, lang, profile, onBook, onTreatments, onSelectTreatment })
   const item = carouselSlides[active];
   const firstName = profile.firstName || t.guest;
   useEffect(() => {
-    const timer = window.setInterval(() => setActive((current) => (current + 1) % carouselSlides.length), 5000);
-    return () => window.clearInterval(timer);
-  }, []);
+    const timer = window.setTimeout(() => setActive((current) => (current + 1) % carouselSlides.length), 5000);
+    return () => window.clearTimeout(timer);
+  }, [active]);
   const move = (direction) => setActive((current) => (current + direction + carouselSlides.length) % carouselSlides.length);
   return (
     <div className="home-view">
