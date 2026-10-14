@@ -78,8 +78,6 @@ const treatments = [
 
 const credibilitySlides = [
   { id: 'massage-certificate', title: { he: 'תעודת עיסוי', en: 'Massage certification' }, eyebrow: { he: 'הסמכה מקצועית', en: 'Professional certification' }, description: { he: 'הכשרה מקצועית בעיסוי, אנטומיה ועיסוי ספורטאים.', en: 'Professional training in massage, anatomy and sports massage.' }, image: '/illustrations/massage-certificate-source.jpeg', tone: 'mist', isCredential: true },
-  { id: 'reflexology-certificate-1', title: { he: 'הסמכת רפלקסולוגיה', en: 'Reflexology certification' }, eyebrow: { he: 'הכשרה מקצועית', en: 'Professional training' }, description: { he: 'הסמכה מקצועית בלימודי רפלקסולוגיה ורפואה משלימה.', en: 'Professional certification in reflexology and complementary care.' }, image: '/illustrations/carousel-photo-1-enhanced.png', tone: 'sage', isCredential: true },
-  { id: 'reflexology-certificate-2', title: { he: 'הסמכה ברפלקסולוגיה', en: 'Reflexology qualification' }, eyebrow: { he: 'ידע וניסיון', en: 'Knowledge and experience' }, description: { he: 'תעודה נוספת המעידה על הכשרה בתחום הרפלקסולוגיה.', en: 'An additional certificate reflecting reflexology training.' }, image: '/illustrations/carousel-photo-2-enhanced.png', tone: 'gold', isCredential: true },
 ];
 
 const carouselSlides = [...treatments, ...credibilitySlides];
