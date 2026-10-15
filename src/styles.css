@@ -461,3 +461,11 @@ input:focus, select:focus { border-color: var(--sage); box-shadow: 0 0 0 4px col
 
 /* Brand subtitle color: warm gold to complement the dark teal wordmark. */
 .brand-copy small { color: var(--gold); }
+
+/* Treatment slides 4–6: keep the image clear of the translucent caption bubble. */
+.simple-carousel-treatment .simple-carousel-image { transform: translateX(6%); }
+.simple-carousel-treatment .simple-carousel-caption { left: 24px; right: auto; inset-inline-start: auto; inset-inline-end: auto; }
+@media (max-width: 620px) {
+  .simple-carousel-treatment .simple-carousel-image { transform: translateX(3%); }
+  .simple-carousel-treatment .simple-carousel-caption { left: 14px; right: auto; width: calc(100% - 28px); }
+}
